@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cursos SENAI - Atualizado</title>
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --senai-red: #d32f2f;
+      --senai-dark-red: #b71c1c;
+      --senai-blue: #004D99;
+      --bg-light: #f0f2f5;
+      --bg-dark: #121212;
+      --text-light: #ffffff;
+      --text-dark: #333333;
+      --card-radius: 1rem;
+      --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --transition: 0.3s ease all;
+    }
+
+    [data-theme="dark"] {
+      --bg-light: var(--bg-dark);
+      --text-dark: var(--text-light);
+      --card-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: var(--transition);
+    }
+
+    header {
+      background: white;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--card-shadow);
+      border-radius: var(--card-radius);
+      margin: 2rem auto;
+      max-width: 1200px;
+      animation: fadeInDown 0.8s;
+    }
+
+    [data-theme="dark"] header {
+      background: #1e1e1e;
+    }
+
+    header img {
+      height: 100px;
+      margin-right: 1.5rem;
+    }
+
+    header h1 {
+      color: var(--senai-red);
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+    }
+
+    .btn-download-pdf {
+      background-color: var(--senai-blue);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: background var(--transition);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-download-pdf:hover {
+      background-color: #003366;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: white;
+      color: #333;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    section {
+      background: white;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      animation: fadeInUp 1s;
+    }
+
+    [data-theme="dark"] section {
+      background: #1e1e1e;
+    }
+
+    h2 {
+      color: var(--senai-blue);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      font-size: 0.95rem;
+      border: 1px solid #dee2e6;
+    }
+
+    thead {
+      background-color: var(--senai-red);
+      color: white;
+    }
+
+    tbody tr {
+      transition: background var(--transition);
+    }
+
+    tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    .curso-nome-clicavel {
+      color: var(--senai-red);
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: underline;
+      transition: color var(--transition);
+    }
+
+    .curso-nome-clicavel:hover {
+      color: var(--senai-dark-red);
+    }
+
+    #data-atual {
+      position: fixed;
+      top: 1rem;
+      right: 2rem;
+      background: white;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      font-weight: 500;
+      color: var(--senai-red);
+      z-index: 999;
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] #data-atual {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    footer {
+      background: white;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #dee2e6;
+      color: #666;
+      margin-top: 4rem;
+      box-shadow: var(--card-shadow);
+      border-radius: var(--card-radius);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s;
+    }
+
+    [data-theme="dark"] footer {
+      background: #1e1e1e;
+      color: #ccc;
+    }
+
+    footer a {
+      color: var(--senai-red);
+      font-size: 1.5rem;
+      margin: 0 0.75rem;
+      transition: color var(--transition);
+    }
+
+    footer a:hover {
+      color: var(--senai-dark-red);
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="bi bi-circle-half"></i> Tema
+  </button>
+
+  <div id="data-atual"></div>
+
+  <header>
+    <img src="logo.png" alt="Logo SENAI">
+    <div>
+      <h1>Cursos Disponíveis</h1>
+      <p class="mb-0 text-muted fw-semibold">Senai Parnaíba • "Pelo Futuro do Trabalho"</p>
+    </div>
+  </header>
+
+  <div class="text-center my-4">
+    <button class="btn btn-download-pdf" onclick="baixarPDF()">
+      <i class="bi bi-file-earmark-arrow-down-fill"></i> Baixar Tabela de Cursos (PDF)
+    </button>
+  </div>
+
+  <main class="container">
+    <section id="pagos-section">
+      <h2>Cursos Pagos <span id="loading-pagos" class="text-muted fs-6 fst-italic">carregando...</span></h2>
+      <div class="table-responsive">
+        <table id="pagos" class="table table-hover table-bordered align-middle">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="gratuitos-section">
+      <h2>Cursos Gratuitos <span id="loading-gratuitos" class="text-muted fs-6 fst-italic">carregando...</span></h2>
+      <div class="table-responsive">
+        <table id="gratuitos" class="table table-hover table-bordered align-middle">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="mb-2">&copy; 2025 SENAI - Todos os direitos reservados.</p>
+    <div>
+      <a href="https://www.instagram.com/senaiparnaiba/" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+      <a href="https://wa.me/558695004221" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+      <a href="https://g.co/kgs/QuvafVJ" target="_blank" title="Google Maps"><i class="bi bi-geo-alt-fill"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    const WHATSAPP_PHONE = "558695004221";
+    const URL_BASE = 'https://docs.google.com/spreadsheets/d/18Vy8ND6vvvXQKsR-zO22T06T0Emfb39O/gviz/tq?tqx=out:json';
+
+    function atualizarDataAtual() {
+      const dataElem = document.getElementById('data-atual');
+      const opcoes = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const agora = new Date();
+      dataElem.textContent = agora.toLocaleDateString('pt-BR', opcoes);
+    }
+    atualizarDataAtual();
+    setInterval(atualizarDataAtual, 60000);
+
+    async function carregarTabela(sheetName, tabelaId, loadingId) {
+      const url = `${URL_BASE}&sheet=${sheetName}&_=${new Date().getTime()}`;
+      const loadingElem = document.getElementById(loadingId);
+      loadingElem.textContent = 'carregando...';
+
+      try {
+        const res = await fetch(url);
+        const texto = await res.text();
+        const jsonStr = texto.substring(texto.indexOf('{'), texto.lastIndexOf('}') + 1);
+        const json = JSON.parse(jsonStr);
+
+        const thead = document.querySelector(`#${tabelaId} thead`);
+        const tbody = document.querySelector(`#${tabelaId} tbody`);
+
+        thead.innerHTML = `
+          <tr>
+            <th>ID</th>
+            <th>Cursos</th>
+            <th>Valor</th>
+            <th>Horário</th>
+            <th>Turno</th>
+            <th>Matrícula</th>
+            <th>Início</th>
+            <th>Status</th>
+            <th>Informações</th>
+          </tr>`;
+
+        if (json.table?.rows?.length > 0) {
+          tbody.innerHTML = json.table.rows.map(row => {
+            const c = row.c;
+            const curso = c[1]?.v || '';
+            const turno = c[4]?.v || '';
+            const descricao = c[9]?.v || 'Descrição não disponível.';
+            const textoMsg = `Gostaria de mais informações sobre o curso ${curso} no turno ${turno}`;
+            const linkWhats = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(textoMsg)}`;
+
+            return `<tr>
+              <td>${c[0]?.v || ''}</td>
+              <td class="curso-nome-clicavel" onclick="mostrarDescricao('${curso.replace(/'/g, "\'")}', '${descricao.replace(/'/g, "\'")}')">${curso}</td>
+              <td>${c[2]?.v || ''}</td>
+              <td>${c[3]?.v || ''}</td>
+              <td>${turno}</td>
+              <td>${c[5]?.v || ''}</td>
+              <td>${c[6]?.v || ''}</td>
+              <td>${c[7]?.v || ''}</td>
+              <td><a href="${linkWhats}" target="_blank" class="btn btn-sm btn-info-whats">WhatsApp</a></td>
+            </tr>`;
+          }).join('');
+        } else {
+          tbody.innerHTML = '<tr><td colspan="9">Nenhum curso disponível no momento.</td></tr>';
+        }
+
+        loadingElem.textContent = '';
+      } catch (error) {
+        console.error(error);
+        loadingElem.textContent = 'Erro ao carregar os dados.';
+      }
+    }
+
+    function mostrarDescricao(nome, descricao) {
+      alert(`Detalhes do Curso: ${nome}
+
+${descricao}`);
+    }
+
+    carregarTabela('Pagos', 'pagos', 'loading-pagos');
+    carregarTabela('Gratuitos', 'gratuitos', 'loading-gratuitos');
+  </script>
+</body>
